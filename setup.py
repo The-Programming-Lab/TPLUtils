@@ -1,10 +1,10 @@
 from setuptools import setup, find_packages
 
 setup(
-    name="TPL_package",
-    version="0.0.1a",
+    name="TPLUtils",
+    version="0.0.1",
     packages=find_packages(exclude=['tests*']),
-    description='An package used for the TPL project',
+    description='A package used for the TPL project',
     license='MIT',
     install_requires=[
         "fastapi",
