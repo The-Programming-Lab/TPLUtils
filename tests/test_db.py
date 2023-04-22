@@ -3,6 +3,7 @@ from src.TPL.utility.logging import logger
 from src.TPL.db.user import User
 import os
 
+# $env:TPL_FIREBASE_AUTH = "C:\Users\bnorm\Desktop\Programming\the-programming-lab\keys\the-programming-lab-d883c-firebase-adminsdk-ih23y-3fbb7f001d.json"
 
 
 def test_init_db():

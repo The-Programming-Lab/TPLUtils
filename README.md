@@ -3,3 +3,6 @@ This is a package for internal use by TPL. It is meant to be used by TPL microse
 
 
 `pytest --cov=src`
+
+
+![Coverage](./coverage.svg)
