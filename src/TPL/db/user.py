@@ -2,8 +2,8 @@ from google.api_core.datetime_helpers import DatetimeWithNanoseconds
 from pydantic import BaseModel
 from fastapi import HTTPException, status
 
-from db.config import db
-from utility.logging import logger
+from src.TPL.db.config import db
+from src.TPL.utility.logging import logger
 
 class User(BaseModel):
     user_id: str

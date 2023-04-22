@@ -3,7 +3,6 @@ import os
 
 from src.TPL.utility.logging import logger
 
-
 # initialize firebase auth and db
 try :
     key_file_path = os.environ.get("TPL_FIREBASE_AUTH")
