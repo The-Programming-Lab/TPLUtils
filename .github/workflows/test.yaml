@@ -10,9 +10,11 @@ jobs:
     runs-on: ubuntu-latest
     env:
       TPL_FIREBASE_AUTH: ${{ github.workspace }}/firebase-key.json
-      TOKEN_GITHUB: ${{ secrets.TOKEN_GITHUB }}
     steps:
       - uses: actions/checkout@v2
+        with:
+          persist-credentials: false
+          token: ${{ secrets.TOKEN_GITHUB }}
       - name: Setup Python
         uses: actions/setup-python@v2
         with:
@@ -35,7 +37,6 @@ jobs:
         run: |
           git config user.name "GitHub Actions"
           git config user.email "github-actions@users.noreply.github.com"
-          git remote set-url origin "https://${{ env.TOKEN_GITHUB }}@github.com/${{ github.repository }}"
           git add coverage.svg
           git commit -m "Update test coverage badge"
           git push
