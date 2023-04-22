@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="TPLUtils",
-    version="0.0.1a",
+    version="0.0.2",
     packages=find_packages(where="src"),
     description='A package used for the TPL project',
     license='MIT',

@@ -1,7 +1,7 @@
 from firebase_admin import credentials, initialize_app, firestore
 import os
 
-from tpl_internal.utility.logging import logger
+from src.TPL.utility.logging import logger
 
 
 # initialize firebase auth and db

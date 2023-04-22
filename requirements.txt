@@ -3,3 +3,4 @@ fastapi
 pydantic
 google
 pytest
+pytest-cov
