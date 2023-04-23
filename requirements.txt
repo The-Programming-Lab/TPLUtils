@@ -4,3 +4,5 @@ pydantic
 google
 pytest
 pytest-cov
+pyrebase4
+python-dotenv

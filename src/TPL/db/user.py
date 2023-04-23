@@ -1,3 +1,4 @@
+
 from google.api_core.datetime_helpers import DatetimeWithNanoseconds
 from pydantic import BaseModel
 from fastapi import HTTPException, status
@@ -6,6 +7,9 @@ from src.TPL.db.config import db
 from src.TPL.utility.logging import logger
 
 class User(BaseModel):
+    '''
+    User class
+    '''
     user_id: str
     allowed_deployments: int
     created_at: DatetimeWithNanoseconds
@@ -20,13 +24,26 @@ class User(BaseModel):
     username: str
     websites: dict
 
+    @staticmethod
+    def create(user_data: dict) -> 'User':
+        user_data["created_at"] = DatetimeWithNanoseconds.now()
+        new_user = User(**user_data)
+        new_user.save()
+        return new_user
+
     def save(self) -> None:
+        '''
+        Save user to database
+        '''
         data = self.dict(exclude={'user_id'})
         user_ref = db.collection('users').document(self.user_id)
         user_ref.set(data)
 
     @staticmethod
     def get(user_id: str) -> 'User':
+        '''
+        Get user by user_id
+        '''
         user_ref = db.collection('users').document(user_id)
         try:
             user = user_ref.get().to_dict()
@@ -38,6 +55,9 @@ class User(BaseModel):
     
     @staticmethod
     def get_from_username(username: str) -> 'User':
+        '''
+        Get user by username
+        '''
         users_ref = db.collection('users')
         users = users_ref.where('username', '==', username).stream()
         for user in users:
