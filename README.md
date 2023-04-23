@@ -2,7 +2,4 @@
 This is a package for internal use by TPL. It is meant to be used by TPL microservices to provide a common set of functionality.
 
 
-`pytest --cov=src`
-
-
-![Coverage](./coverage.svg)
+`pytest -s -p no:warnings --cov=src`
