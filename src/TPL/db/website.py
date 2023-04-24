@@ -29,15 +29,30 @@ class NewWebsite(BaseModel):
 
 class Website(BaseModel):
     website_id: Optional[str]
-    created_at: DatetimeWithNanoseconds
-    description: str
-    env: dict
-    name: str
     owner_id: str
-    port_number: str
-    repo_name: str
-    type: WebsiteType
+
+    # website data structure creation date
+    created_at: DatetimeWithNanoseconds
+    # website data structure last update date, None if never updated
     updated_at: Optional[DatetimeWithNanoseconds]
+    # website last deployment date, None if never deployed
+    deployed_at: Optional[DatetimeWithNanoseconds]
+
+    # information for profile card
+    name: str
+    description: str
+    profile_image: Optional[str] = None
+    profile_logo: Optional[str] = None
+
+    # information for deployment
+    env: dict    
+    port_number: str
+    # full url of the repo
+    repo_url: str
+    template: WebsiteType
+    # path of the website: /user/<username>/<website_name>
+    path: str
+    
 
     def save(self):
         data = self.dict(exclude={'website_id'})
@@ -55,6 +70,8 @@ class Website(BaseModel):
     def create(website_data: dict) -> 'Website':
         new_website_id = str(uuid.uuid4())
         website_data["website_id"] = new_website_id
+        website_data["created_at"] = DatetimeWithNanoseconds.now()
+
         new_website = Website(**website_data)
         new_website.save()
         return new_website

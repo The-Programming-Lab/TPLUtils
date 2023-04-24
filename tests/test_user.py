@@ -3,7 +3,8 @@ load_dotenv(".env")
 import pytest
 from google.api_core.datetime_helpers import DatetimeWithNanoseconds
 from fastapi import HTTPException
-from src.TPL.db.config import db
+
+
 from src.TPL.db.user import User
 
 @pytest.fixture

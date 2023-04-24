@@ -8,7 +8,6 @@ from src.TPL.db.website import Website, WebsiteType
 from src.TPL.db.config import db
 import uuid
 
-
 # Sample website data
 website_data = {
     "created_at": DatetimeWithNanoseconds.now(),
@@ -17,8 +16,9 @@ website_data = {
     "name": "website",
     "owner_id": "owner123",
     "port_number": "8000",
-    "repo_name": "website_repo",
-    "type": WebsiteType.FRONTEND,
+    "repo_url": "https://github.com/user/website_repo",
+    "template": WebsiteType.FRONTEND,
+    "path": "/user/username/website",
 }
 
 # Test create website
@@ -26,8 +26,8 @@ def test_create_website():
     new_website = Website.create(website_data)
 
     assert new_website.description == "Sample website"
-    assert new_website.repo_name == "website_repo"
-    assert new_website.type == WebsiteType.FRONTEND
+    assert new_website.repo_url == "https://github.com/user/website_repo"
+    assert new_website.template == WebsiteType.FRONTEND
 
     # Cleanup
     new_website.delete()
@@ -42,8 +42,8 @@ def test_save_website():
     saved_website = Website.get_from_id(website_id)
     assert saved_website.website_id == website_id
     assert saved_website.description == "Sample website"
-    assert saved_website.repo_name == "website_repo"
-    assert saved_website.type == WebsiteType.FRONTEND
+    assert saved_website.repo_url == "https://github.com/user/website_repo"
+    assert saved_website.template == WebsiteType.FRONTEND
 
     # Cleanup
     website.delete()

@@ -2,6 +2,7 @@
 from google.api_core.datetime_helpers import DatetimeWithNanoseconds
 from pydantic import BaseModel
 from fastapi import HTTPException, status
+from typing import Optional
 
 from src.TPL.db.config import db
 from src.TPL.utility.logging import logger
@@ -11,17 +12,30 @@ class User(BaseModel):
     User class
     '''
     user_id: str
+    username: str
+
     allowed_deployments: int
     created_at: DatetimeWithNanoseconds
-    email: str
+    updated_at: Optional[DatetimeWithNanoseconds]
+    
     fname: str
+    lname: str
+
+    email: str
     github: str
     linkedin: str
-    lname: str
     phone: str
+
     photo_url: str
+    
     role: str
-    username: str
+    
+    # example:
+    # {
+    #    "<website_name>": "<website_id>",
+    #    "<website_name1>": "<website_id1>", 
+    #    ...
+    # }
     websites: dict
 
     @staticmethod
